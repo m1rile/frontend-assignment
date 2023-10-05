@@ -44,7 +44,7 @@ You can use the following endpoints:
 - `PATCH /api/credit-limits/:id` to update a credit limit
 - `DELETE /api/credit-limits/:id` to delete a credit limit
 
-You do not need to understand how the API or the fake DB work, but you can have a look at the code if you are curious (`pages/api/**/*.ts`).
+You do not need to understand how the API or the fake DB work, but you can have a look at the code if you are curious (`pages/api/**/*.ts`). Note that the data is persisted in a cookie. That means that there's a size limit to the amount of data, after which new items will not be saved anymore. You can clear the DB by clearing all cookies!
 
 ## Getting started and submitting your assignment 🚀
 You should start by forking this repository and then cloning it locally. You can then install the dependencies and start the app:
