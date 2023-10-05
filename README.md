@@ -22,8 +22,9 @@ As a front-end or full-stack software engineer, you are asked to improve the pro
 - Add a new page that allows the user to submit a credit limit request
 - Add the ability for a user to delete a credit limit
 - Add the ability for a user to change the status of credit limit
+- [Bonus] Prevent the user from submitting for a credit limit if one already exists for the same company
 
-Feel free to implement to implement those features in any way you see fit. Feel also free to change / refactor / redesign anything in the app. You will be assessed on the following criteria:
+Feel free to implement those features in any way you see fit. Feel also free to change / refactor / redesign anything in the app. You will be assessed on the following criteria:
 - Code quality
 - User experience
 - Look and feel
