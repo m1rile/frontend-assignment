@@ -1,15 +1,30 @@
 import React, { useState } from 'react'
 import CustomButton from './CustomButton';
+import { CreditLimit } from '@/lib/db';
 
-const SubmissionForm = () => {
+interface SubmissionFormProps {
+  creditLimits: CreditLimit[];
+}
+
+const SubmissionForm = ({creditLimits}: SubmissionFormProps) => {
   const [formData, setFormData] = useState({
       name: '',
       amount: 0,
       siren: ''
   });
+  const [formError, setFormError] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Check if credit limits for a same company already exists
+    if (creditLimits.some((item) => item.siren.toLocaleLowerCase() === formData.siren.toLocaleLowerCase())) {
+      setFormError(true);
+      return;
+    } else if (formData.name.length === 0 || formData.siren.length === 0 || formData.amount === 0) {
+      setFormError(true);
+      return;
+    }
 
     try {
       // Make the API POST request
@@ -34,7 +49,7 @@ const SubmissionForm = () => {
       const { name, value } = event.target;
       setFormData({
           ...formData,
-          [name]: value,
+          [name]: name === 'siren' || name === 'name' ? value.replace(/\s+$/, "") : value,
       });
   };
   
@@ -93,6 +108,8 @@ const SubmissionForm = () => {
           btnType="submit"
         />
       </form>
+
+      {formError && <p className='text-red-400'>Request failed: check the form entries.</p>}
     </div>
   )
 }
