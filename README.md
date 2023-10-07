@@ -51,7 +51,7 @@ You should start by forking this repository and then cloning it locally. You can
 
 ```shell
 npm install
-npm dev
+npm run dev
 open localhost:3000
 ```
 
