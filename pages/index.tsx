@@ -13,10 +13,14 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // TODO: check if there's error
-    fetch('/api/credit-limits')
+    try {
+      fetch('/api/credit-limits')
       .then((response) => response.json())
       .then((data) => setCreditLimits(data));
+    } catch (error) {
+      console.error("ERROR: ", error);
+      setCreditLimits([]);
+    }
   }, [setCreditLimits]);
 
   return (
@@ -36,8 +40,10 @@ export default function Home() {
 
       <ul>
         {creditLimits.map((creditLimit) => (
-          <li key={creditLimit.id}>
-            {creditLimit.name} ({creditLimit.siren}) - €{creditLimit.amount}
+          <li key={creditLimit.id} className="border-2 flex justify-between gap-2">
+            <span className='flex-1'>{creditLimit.name}</span>
+            <span className='flex-1'>({creditLimit.siren})</span>
+            <span className='flex-1'>- €{creditLimit.amount}</span>
           </li>
         ))}
       </ul>
